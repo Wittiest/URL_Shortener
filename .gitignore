@@ -1,0 +1,7 @@
+pip-selfcheck.json
+.gitattributes
+Include/
+Lib/
+Scripts/
+tcl/
+.Python
