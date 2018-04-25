@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>URL Shortener</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css" rel="stylesheet">
+</head>
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <div class="d-flex h-100 align-items-center">
+        <main role="main" class="inner cover"  >
+        {% block content %}
+        {% endblock content %}
+        </main>
+      </div>
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Project by Dustin Pearson</p>
+        </div>
+      </footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{% extends "basic_page.html" %}
+
+{% block content %}
+    <h1 class="cover-heading">Link Already Exists</h1>
+    <p class="lead">{{object.url}}</p>
+    <p class="lead">
+      <a href='{{object.get_full_url}}' class="btn btn-lg btn-default">{{object.get_full_url}}</a>
+    </p>
+    <a class='btn btn-md btn-secondary' href='/'>Go back</a>
+{% endblock content %}

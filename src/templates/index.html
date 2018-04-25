@@ -1,0 +1,12 @@
+{% extends "basic_page.html" %}
+
+{% block content %}
+    <h1 class="cover-heading">{{title}}</h1>
+    
+    <p class="lead">
+    	<form method='POST' action='.'> {% csrf_token %}
+			{{ form.as_p }}
+			<input class='btn btn-primary' type='submit' value='Shorten' >
+		</form>
+	</p>
+{% endblock content %}

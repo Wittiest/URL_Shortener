@@ -1,13 +1,38 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 
-from .models import shortURL
+from .forms import UrlForm
+from .models import ShortURL
 
-def newView(request, shortenedUrl=None):
-	obj = shortURL.objects.get(shortenedUrl=shortenedUrl)
-	return HttpResponse("Shortened: {su}, URL: {real}".format(su=shortenedUrl, real=obj.url))
+class IndexView(View):
+	def get(self, request, *args, **kwargs):
+		form = UrlForm()
+		context = {
+			'title': "URL Shortener",
+			'form': form
+		}
+		return render(request, 'index.html', context)
+	def post(self, request, *args, **kwargs):
+		form = UrlForm(request.POST)
+		context = {
+			'title': "URL Shortener",
+			'form': form
+		}
+		temp = 'index.html'
+		if form.is_valid():
+			obj, created = ShortURL.objects.get_or_create(url=form.cleaned_data.get("url"))
+			context = {
+				'object': obj,
+				'created': created,
+			}
+			if created:
+				temp = 'created.html'
+			else:
+				temp = 'exists.html'
+		return render(request, temp, context)
 
-class NewClassView(View):
+class NewView(View):
 	def get(self, request, shortenedUrl=None):
-		return HttpResponse("tt")
+		obj = get_object_or_404(ShortURL, shortenedUrl = shortenedUrl)
+		return HttpResponseRedirect(obj.url)
