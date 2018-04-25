@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from short.views import newView, NewClassView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('a/<slug:shortenedUrl>', newView),
+    path('b/<slug:shortenedUrl>', NewClassView.as_view()),
 ]
